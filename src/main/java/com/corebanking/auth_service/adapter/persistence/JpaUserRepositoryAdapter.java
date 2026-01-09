@@ -2,9 +2,11 @@ package com.corebanking.auth_service.adapter.persistence;
 
 import com.corebanking.auth_service.domain.model.User;
 import com.corebanking.auth_service.domain.port.UserRepositoryPort;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public class JpaUserRepositoryAdapter implements UserRepositoryPort {
 
     private final UserJpaRepository jpaRepository;

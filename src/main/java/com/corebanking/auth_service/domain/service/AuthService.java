@@ -3,7 +3,9 @@ package com.corebanking.auth_service.domain.service;
 import com.corebanking.auth_service.domain.model.User;
 import com.corebanking.auth_service.domain.port.UserRepositoryPort;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AuthService {
     private final UserRepositoryPort userRepository;
     private final PasswordEncoder passwordEncoder;
