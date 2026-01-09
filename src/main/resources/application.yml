@@ -1,0 +1,27 @@
+
+spring:
+  # Perfil activo por defecto (cuando no se especifica)
+  profiles:
+    active: dev
+
+  # Configuración común a todos los entornos
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  # Internacionalización
+  messages:
+    basename: messages/messages
+    encoding: UTF-8
+    fallback-to-system-locale: false
+
+# Puerto base (puede sobrescribirse por perfil)
+server:
+  port: 8081
+
+# Logging base
+logging:
+  level:
+    com.corebanking.auth: INFO

@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://mariadb:3306/auth_db?useSSL=true&serverTimezone=UTC
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+        generate_statistics: false
+
+  # Desactivar devtools en producción
+  devtools:
+    restart:
+      enabled: false
+
+# Puerto estándar
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+  # Seguridad HTTPS
+  ssl:
+    enabled: false  # Cambiar a true si tienes certificado
+
+# Logs mínimos
+logging:
+  level:
+    com.corebanking.auth: WARN
+    org.springframework.web: WARN
+
+# Manejo de errores
+server:
+  error:
+    include-message: never
+    include-binding-errors: never
+    include-stacktrace: on_param
+    include-exception: false

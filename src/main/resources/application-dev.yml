@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/auth_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+        globally_quoted_identifiers: false
+
+  # Permitir reinicio rápido
+  devtools:
+    restart:
+      enabled: true
+
+# Puerto específico para auth-service
+server:
+  port: 8081
+
+# Logs
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
