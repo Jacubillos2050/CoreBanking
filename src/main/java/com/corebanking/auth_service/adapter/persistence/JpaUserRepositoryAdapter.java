@@ -3,7 +3,6 @@ package com.corebanking.auth_service.adapter.persistence;
 import com.corebanking.auth_service.domain.model.User;
 import com.corebanking.auth_service.domain.port.UserRepositoryPort;
 import org.springframework.stereotype.Repository;
-
 import java.util.Optional;
 
 @Repository
@@ -28,7 +27,7 @@ public class JpaUserRepositoryAdapter implements UserRepositoryPort {
         entity.setPassword(user.getPassword());
         entity.setRole(user.getRole());
         UserEntity saved = jpaRepository.save(entity);
-        return new User(saved.getUsername(), saved.getPassword(), saved.getRole());
+        return new User(saved.getId(), saved.getUsername(), saved.getPassword(), saved.getRole());
     }
 
     @Override

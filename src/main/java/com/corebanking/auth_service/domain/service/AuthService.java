@@ -5,8 +5,10 @@ import com.corebanking.auth_service.domain.port.UserRepositoryPort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class AuthService {
+
     private final UserRepositoryPort userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -17,7 +19,7 @@ public class AuthService {
 
     public User register(String username, String rawPassword, String role) {
         if (userRepository.existsByUsername(username)) {
-            throw new IllegalArgumentException("Username already exists");
+            throw new IllegalArgumentException("user.exists");
         }
         String encodedPassword = passwordEncoder.encode(rawPassword);
         User user = new User(username, encodedPassword, role);
