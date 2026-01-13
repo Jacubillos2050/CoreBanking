@@ -29,3 +29,9 @@ logging:
     org.springframework.security: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+# Dentro del bloque "on-profile: dev"
+app:
+  jwt:
+    secret: 3THMh9e0ykcjVcJy0pPEbJ4AP1mJoFZj88/2BwrQwa8=
+    expiration-ms: 86400000  # 24 horas

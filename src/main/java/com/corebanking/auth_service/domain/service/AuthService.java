@@ -1,6 +1,7 @@
 package com.corebanking.auth_service.domain.service;
 
 import com.corebanking.auth_service.domain.model.User;
+import com.corebanking.auth_service.domain.port.JwtTokenProviderPort;
 import com.corebanking.auth_service.domain.port.UserRepositoryPort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,14 @@ public class AuthService {
 
     private final UserRepositoryPort userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtTokenProviderPort jwtTokenProvider;
 
-    public AuthService(UserRepositoryPort userRepository, PasswordEncoder passwordEncoder) {
+    public AuthService(UserRepositoryPort userRepository,
+                       PasswordEncoder passwordEncoder,
+                       JwtTokenProviderPort jwtTokenProvider) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     public User register(String username, String rawPassword, String role) {
@@ -30,5 +35,14 @@ public class AuthService {
         return userRepository.findByUsername(username)
                 .map(user -> passwordEncoder.matches(rawPassword, user.getPassword()))
                 .orElse(false);
+    }
+    public String authenticate(String username, String rawPassword) {
+        if (!validateCredentials(username, rawPassword)) {
+            throw new IllegalArgumentException("Invalid credentials");
+        }
+        // Obtener rol del usuario (necesitas cargarlo)
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        return jwtTokenProvider.generateToken(user.getUsername(), user.getRole());
     }
 }

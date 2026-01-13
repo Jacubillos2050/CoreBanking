@@ -40,6 +40,11 @@ public class AuthController {
             return ResponseEntity.badRequest().body(new ErrorResponse(message));
         }
     }
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+        String token = authService.authenticate(request.username(), request.password());
+        return ResponseEntity.ok(new LoginResponse(token));
+    }
 }
 
 // DTOs
@@ -49,7 +54,5 @@ record RegisterRequest(
         @NotBlank String role
 ) {}
 
-record LoginRequest(
-        @NotBlank String username,
-        @NotBlank String password
-) {}
+record LoginRequest(String username, String password) {}
+record LoginResponse(String token) {}
