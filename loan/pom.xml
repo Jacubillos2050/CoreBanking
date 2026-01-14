@@ -8,9 +8,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<artifactId>risk-service</artifactId>
-	<name>risk-service</name>
-	<description>Risk Assessment Service for CoreBanking Platform, based on hexagonal architecture.</description>
+	<artifactId>loan-service</artifactId>
+	<name>loan-service</name>
+	<description>Loan Service for CoreBanking Platform, based on hexagonal architecture.</description>
 	<url/>
 	<licenses>
 		<license/>

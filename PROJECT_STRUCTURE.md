@@ -52,11 +52,17 @@ src/main/java/com/corebanking/{service_name}/
   - Eliminar cliente
   - Validación de datos (email único, creditScore 300-850, etc.)
 
-## Servicios Pendientes
-
 ### 3. risk-service
-- Evaluación automática de riesgo para solicitudes de préstamo
-- Cálculo de riskScore y riskLevel
+- **Puerto**: 8083 (dev), 8080 (prod)
+- **Base de datos**: `risk_db`
+- **Funcionalidades**:
+  - Evaluar riesgo automáticamente para solicitudes de préstamo
+  - Calcular riskScore (0-100, donde >70 = alto riesgo)
+  - Determinar riskLevel (LOW, MEDIUM, HIGH)
+  - Aplicar reglas de negocio (credit score, debt-to-income, plazo, ingresos, monto)
+  - Obtener evaluación por ID de solicitud o ID de evaluación
+
+## Servicios Pendientes
 
 ### 4. loan-service
 - Gestión de solicitudes de préstamo
