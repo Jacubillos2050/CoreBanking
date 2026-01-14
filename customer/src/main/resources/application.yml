@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: customer-service
+  profiles:
+    active: dev
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+        format_sql: true
+
+logging:
+  level:
+    root: INFO
+    com.corebanking.customer_service: DEBUG
+
