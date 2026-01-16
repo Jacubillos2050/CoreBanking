@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: loan-service
+  profiles:
+    active: dev
+  messages:
+    basename: messages/messages
+    encoding: UTF-8
+    fallback-to-system-locale: false
+  jpa:
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        generate_statistics: false
+
+logging:
+  level:
+    root: INFO
+    com.corebanking.loan_service: INFO
+

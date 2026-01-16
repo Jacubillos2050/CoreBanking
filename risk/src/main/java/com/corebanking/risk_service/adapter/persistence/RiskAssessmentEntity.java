@@ -36,7 +36,7 @@ public class RiskAssessmentEntity {
     @NotNull(message = "Risk level cannot be null")
     private RiskLevel riskLevel;
     
-    @ElementCollection
+    @ElementCollection (fetch = FetchType.EAGER)
     @CollectionTable(name = "risk_rules_applied", joinColumns = @JoinColumn(name = "risk_assessment_id"))
     @Column(name = "rule")
     private List<String> rulesApplied;

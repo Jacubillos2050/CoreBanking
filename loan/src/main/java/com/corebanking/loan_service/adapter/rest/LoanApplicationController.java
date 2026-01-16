@@ -110,14 +110,20 @@ public class LoanApplicationController {
 
         Locale locale = acceptLanguage != null ? Locale.forLanguageTag(acceptLanguage) : Locale.ENGLISH;
 
+        log.info("Attempting to approve loan with id: {}", id);
         try {
             LoanApplication loanApplication = loanService.approveLoanApplication(id, request.approvedBy());
             LoanApplicationResponse response = toResponse(loanApplication);
+            log.info("Loan approved successfully: {}", id);
             return ResponseEntity.ok(response);
         } catch (IllegalArgumentException | IllegalStateException e) {
+            log.warn("Business validation failed for loan approval: {}", e.getMessage());
             String key = e.getMessage();
             String message = messageSource.getMessage(key, null, "Unknown error", locale);
             return ResponseEntity.badRequest().body(new ErrorResponse(message));
+        } catch (Exception e) {
+            log.error("Unexpected error approving loan: {}", e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse("Internal server error"));
         }
     }
 

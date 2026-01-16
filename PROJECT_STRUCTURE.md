@@ -8,9 +8,9 @@ El proyecto CoreBanking está organizado como una arquitectura de microservicios
 CoreBanking/
 ├── auth-service/          # Servicio de autenticación y autorización
 ├── customer-service/      # Servicio de gestión de clientes
-├── risk-service/          # Servicio de evaluación de riesgo (pendiente)
+├── risk-service/          # Servicio de evaluación de riesgo
 ├── loan-service/          # Servicio de préstamos (pendiente)
-├── audit-service/         # Servicio de auditoría (pendiente)
+├── audit-service/         # Servicio de auditoría
 └── frontend-react/        # Frontend en React (pendiente)
 ```
 
@@ -62,15 +62,21 @@ src/main/java/com/corebanking/{service_name}/
   - Aplicar reglas de negocio (credit score, debt-to-income, plazo, ingresos, monto)
   - Obtener evaluación por ID de solicitud o ID de evaluación
 
+### 4. audit-service
+- **Puerto**: 8084 (dev), 8080 (prod)
+- **Base de datos**: `audit_db`
+- **Funcionalidades**:
+  - Registro de todas las operaciones críticas
+  - Trazabilidad completa de cambios
+  - Consultas por usuario, entidad, acción y rango de fechas
+  - Captura automática de IP y User-Agent
+  - Registro de detalles en formato JSON o texto
+
 ## Servicios Pendientes
 
-### 4. loan-service
+### 5. loan-service
 - Gestión de solicitudes de préstamo
 - Integración con risk-service y customer-service
-
-### 5. audit-service
-- Registro de todas las operaciones críticas
-- Trazabilidad de cambios
 
 ### 6. frontend-react
 - Interfaz de usuario en React
@@ -90,9 +96,9 @@ src/main/java/com/corebanking/{service_name}/
 Cada servicio tiene su propia base de datos:
 - `auth_db` - Para auth-service
 - `customer_db` - Para customer-service
-- `risk_db` - Para risk-service (pendiente)
+- `risk_db` - Para risk-service
 - `loan_db` - Para loan-service (pendiente)
-- `audit_db` - Para audit-service (pendiente)
+- `audit_db` - Para audit-service
 
 ## Configuración
 
@@ -107,7 +113,7 @@ Cada servicio se compila y ejecuta de forma independiente:
 
 ```bash
 # Compilar
-cd customer-service
+cd audit
 mvn clean install
 
 # Ejecutar
