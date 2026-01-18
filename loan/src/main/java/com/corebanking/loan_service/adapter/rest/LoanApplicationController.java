@@ -159,38 +159,4 @@ public class LoanApplicationController {
     }
 }
 
-// DTOs
-record CreateLoanApplicationRequest(
-        @NotNull(message = "Customer ID cannot be null")
-        UUID customerId,
-        
-        @NotNull(message = "Requested amount cannot be null")
-        @DecimalMin(value = "10000", message = "Requested amount must be at least 10000")
-        @DecimalMax(value = "50000000", message = "Requested amount must be at most 50000000")
-        BigDecimal requestedAmount,
-        
-        @NotNull(message = "Term in months cannot be null")
-        @Min(value = 6, message = "Term in months must be at least 6")
-        @Max(value = 60, message = "Term in months must be at most 60")
-        Integer termInMonths
-) {}
-
-record ApproveLoanRequest(
-        @NotBlank(message = "Approved by cannot be blank")
-        @Size(max = 100, message = "Approved by must not exceed 100 characters")
-        String approvedBy
-) {}
-
-record LoanApplicationResponse(
-        UUID id,
-        UUID customerId,
-        BigDecimal requestedAmount,
-        Integer termInMonths,
-        String status,
-        java.time.Instant createdAt,
-        java.time.Instant approvedAt,
-        String approvedBy
-) {}
-
-record ErrorResponse(String error) {}
 

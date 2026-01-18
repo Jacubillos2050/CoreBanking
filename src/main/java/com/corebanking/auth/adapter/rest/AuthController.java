@@ -45,14 +45,16 @@ public class AuthController {
         String token = authService.authenticate(request.username(), request.password());
         return ResponseEntity.ok(new LoginResponse(token));
     }
+
+    // DTOs
+    record RegisterRequest(
+            @NotBlank String username,
+            @NotBlank String password,
+            @NotBlank String role
+    ) {}
+
+    record LoginRequest(String username, String password) {}
+    record LoginResponse(String token) {}
+    record UserResponse(long id, String username, String role) {}
+    record ErrorResponse(String message) {}
 }
-
-// DTOs
-record RegisterRequest(
-        @NotBlank String username,
-        @NotBlank String password,
-        @NotBlank String role
-) {}
-
-record LoginRequest(String username, String password) {}
-record LoginResponse(String token) {}

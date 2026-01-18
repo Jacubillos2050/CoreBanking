@@ -74,7 +74,7 @@ public class JpaAuditRepositoryAdapter implements AuditRepositoryPort {
                 .collect(Collectors.toList());
     }
 
-    private AuditLog toDomain(AuditLogEntity entity) {
+    AuditLog toDomain(AuditLogEntity entity) {
         return new AuditLog(
             entity.getId(),
             entity.getUserId(),
@@ -88,7 +88,7 @@ public class JpaAuditRepositoryAdapter implements AuditRepositoryPort {
         );
     }
 
-    private AuditLogEntity toEntity(AuditLog auditLog) {
+    AuditLogEntity toEntity(AuditLog auditLog) {
         AuditLogEntity entity = new AuditLogEntity();
         if (auditLog.getId() != null) {
             entity.setId(auditLog.getId());

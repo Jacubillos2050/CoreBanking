@@ -303,32 +303,4 @@ public class AuditController {
     }
 }
 
-// DTOs
-record CreateAuditLogRequest(
-        @NotBlank(message = "User ID cannot be blank")
-        String userId,
-        
-        @NotBlank(message = "Action cannot be blank")
-        String action,
-        
-        @NotBlank(message = "Entity type cannot be blank")
-        String entityType,
-        
-        String entityId,
-        String details
-) {}
-
-record AuditLogResponse(
-        java.util.UUID id,
-        String userId,
-        String action,
-        String entityType,
-        String entityId,
-        String details,
-        java.time.LocalDateTime timestamp,
-        String ipAddress,
-        String userAgent
-) {}
-
-record ErrorResponse(String error) {}
 

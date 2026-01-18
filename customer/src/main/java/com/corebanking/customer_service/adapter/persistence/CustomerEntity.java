@@ -44,5 +44,17 @@ public class CustomerEntity {
     @Column(nullable = false)
     @NotNull(message = "Credit score cannot be null")
     private Integer creditScore;
+
+    // Getters and setters (in case Lombok doesn't generate them)
+    public UUID getId() { return id; }
+    public String getName() { return name; }
+    public String getEmail() { return email; }
+    public BigDecimal getMonthlyIncome() { return monthlyIncome; }
+    public Integer getCreditScore() { return creditScore; }
+    public void setId(UUID id) { this.id = id; }
+    public void setName(String name) { this.name = name; }
+    public void setEmail(String email) { this.email = email; }
+    public void setMonthlyIncome(BigDecimal monthlyIncome) { this.monthlyIncome = monthlyIncome; }
+    public void setCreditScore(Integer creditScore) { this.creditScore = creditScore; }
 }
 
